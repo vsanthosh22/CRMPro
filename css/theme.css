@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+    --crm-gold: #c9a84c;
+    --crm-gold-dim: rgba(201, 168, 76, 0.12);
+    --crm-gold-border: rgba(201, 168, 76, 0.28);
+    --crm-gold-focus: rgba(201, 168, 76, 0.55);
+    --crm-gold-glow: rgba(201, 168, 76, 0.30);
+    --crm-gold-text-bg: #1a1200;
+    --crm-danger: #e05555;
+    --crm-danger-bg: rgba(224, 85, 85, 0.08);
+    --crm-success: #4ca87e;
+    --crm-font-display: 'Playfair Display', Georgia, serif;
+    --crm-font-body: 'DM Sans', system-ui, sans-serif;
+    --crm-radius-card: 20px;
+    --crm-radius-input: 12px;
+    --crm-radius-btn: 12px;
+    --crm-transition: 0.22s ease;
+}
+
+[data-bs-theme="dark"] {
+    --crm-bg: #0b0d13;
+    --crm-surface: #12151e;
+    --crm-surface-2: #1a1f2c;
+    --crm-border: rgba(255, 255, 255, 0.08);
+    --crm-border-hover: rgba(255, 255, 255, 0.15);
+    --crm-text: #eceae2;
+    --crm-text-muted: #9a9790;
+    --crm-text-subtle: #5c5a56;
+    --bs-body-bg: var(--crm-bg);
+    --bs-body-color: var(--crm-text);
+    --bs-border-color: var(--crm-border);
+    --crm-card-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 32px 80px rgba(0,0,0,0.60), 0 0 70px rgba(201,168,76,0.04);
+    --crm-orb-1: radial-gradient(circle, rgba(201,168,76,0.10), transparent 68%);
+    --crm-orb-2: radial-gradient(circle, rgba(70,100,210,0.07), transparent 68%);
+    --crm-orb-opacity: 0.70;
+    --crm-grid-line: rgba(255, 255, 255, 0.016);
+}
+
+[data-bs-theme="light"] {
+    --crm-bg: #f4f2ee;
+    --crm-surface: #ffffff;
+    --crm-surface-2: #f7f5f2;
+    --crm-border: rgba(0, 0, 0, 0.09);
+    --crm-border-hover: rgba(0, 0, 0, 0.18);
+    --crm-text: #1c1a16;
+    --crm-text-muted: #6b6760;
+    --crm-text-subtle: #b0ada8;
+    --bs-body-bg: var(--crm-bg);
+    --bs-body-color: var(--crm-text);
+    --bs-border-color: var(--crm-border);
+    --crm-card-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 20px 60px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06);
+    --crm-orb-1: radial-gradient(circle, rgba(201,168,76,0.14), transparent 68%);
+    --crm-orb-2: radial-gradient(circle, rgba(100,140,230,0.08), transparent 68%);
+    --crm-orb-opacity: 0.55;
+    --crm-grid-line: rgba(0, 0, 0, 0.025);
+    --crm-gold: #b5922d;
+    --crm-gold-dim: rgba(181, 146, 45, 0.10);
+    --crm-gold-border: rgba(181, 146, 45, 0.30);
+    --crm-gold-focus: rgba(181, 146, 45, 0.45);
+    --crm-gold-glow: rgba(181, 146, 45, 0.22);
+    --crm-gold-text-bg: #fff8e8;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--crm-font-body);
+}
+
+body {
+    font-family: var(--crm-font-body);
+    background-color: var(--crm-bg);
+    color: var(--crm-text);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.crm-bg-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.crm-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: var(--crm-orb-opacity);
+    transition: opacity 0.4s ease;
+}
+
+.crm-orb-1 {
+    width: 580px;
+    height: 580px;
+    background: var(--crm-orb-1);
+    top: -180px;
+    left: -140px;
+    animation: oCrm1 22s ease-in-out infinite alternate;
+}
+
+.crm-orb-2 {
+    width: 480px;
+    height: 480px;
+    background: var(--crm-orb-2);
+    bottom: -120px;
+    right: -100px;
+    animation: oCrm2 18s ease-in-out infinite alternate;
+}
+
+@keyframes oCrm1 {
+    to {
+        transform: translate(55px, 40px) scale(1.1);
+    }
+}
+
+@keyframes oCrm2 {
+    to {
+        transform: translate(-40px, -55px) scale(1.07);
+    }
+}
+
+.crm-bg-layer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--crm-grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    transition: opacity 0.35s ease;
+}
+
+.crm-theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--crm-surface);
+    border: 1px solid var(--crm-border);
+    color: var(--crm-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    transition: background var(--crm-transition), border-color var(--crm-transition), color var(--crm-transition), transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.crm-theme-toggle:hover {
+    border-color: var(--crm-gold-border);
+    color: var(--crm-gold);
+    transform: scale(1.08);
+    box-shadow: 0 4px 20px var(--crm-gold-glow);
+}
+
+.crm-theme-toggle:focus-visible {
+    outline: 3px solid var(--crm-gold);
+    outline-offset: 3px;
+}
+
+.crm-theme-toggle .icon-sun,
+.crm-theme-toggle .icon-moon {
+    transition: transform 0.3s ease, opacity 0.2s;
+}
+
+[data-bs-theme="dark"] .crm-theme-toggle .icon-sun {
+    display: none;
+}
+
+[data-bs-theme="dark"] .crm-theme-toggle .icon-moon {
+    display: block;
+}
+
+[data-bs-theme="light"] .crm-theme-toggle .icon-sun {
+    display: block;
+}
+
+[data-bs-theme="light"] .crm-theme-toggle .icon-moon {
+    display: none;
+}
+
+.crm-skip {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--crm-gold);
+    color: var(--crm-gold-text-bg);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+    text-decoration: none;
+    transition: top 0.2s;
+}
+
+.crm-skip:focus {
+    top: 16px;
+}
+
+.crm-sr-live {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+}

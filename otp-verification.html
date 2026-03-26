@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Identity — CRMPro</title>
+    <meta name="description" content="Enter the one-time code sent to your email to verify your identity." />
+
+    <script src="js/theme.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+    <a class="crm-skip" href="#otp-group">Skip to verification code input</a>
+
+    <div class="crm-bg-layer" aria-hidden="true">
+        <div class="crm-orb crm-orb-1"></div>
+        <div class="crm-orb crm-orb-2"></div>
+    </div>
+
+    <button class="crm-theme-toggle" id="crm-theme-btn" type="button"
+            aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon-moon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg class="icon-sun" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+    </button>
+
+    <div class="crm-toast" id="crm-toast" role="status" aria-live="polite" aria-atomic="true">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+        </svg>
+        <span id="crm-toast-text"></span>
+    </div>
+
+    <div id="crm-live-polite" class="crm-sr-live" aria-live="polite" aria-atomic="true"></div>
+    <div id="crm-live-urgent" class="crm-sr-live" aria-live="assertive" aria-atomic="true"></div>
+
+    <main id="main-content" class="crm-page-wrap">
+        <div class="crm-card" role="region" aria-labelledby="otp-title">
+
+            <a href="login.html" class="crm-brand" aria-label="CRMPro — return to sign in">
+                <div class="crm-brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                        <path d="M2 17l10 5 10-5" />
+                        <path d="M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+                <span class="crm-brand-name">CRM<span>Pro</span></span>
+            </a>
+
+            <div id="otp-panel">
+
+                <a href="forgot-password.html" class="crm-back" aria-label="Go back to password reset form">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    Change email
+                </a>
+
+                <div class="crm-icon-hero" aria-hidden="true">
+                    <svg width="26" height="26" fill="none" stroke="#c9a84c" stroke-width="1.7" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+
+                <div class="crm-heading">
+                    <h1 id="otp-title">Verify your identity</h1>
+                    <p id="otp-desc">Enter the 6-digit code we sent to your email address.</p>
+                </div>
+
+                <div class="crm-chip mb-3" role="note" aria-label="Code sent to:">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2" y="4" width="20" height="16" rx="3" />
+                        <path d="M2 8l10 6 10-6" />
+                    </svg>
+                    <span id="otp-email-display">your email address</span>
+                </div>
+
+                <div class="crm-rule" aria-hidden="true"></div>
+
+                <form id="otp-form" novalidate aria-label="OTP verification form" aria-describedby="otp-desc">
+
+                    <fieldset class="crm-otp-fieldset" id="otp-group">
+                        <legend class="crm-otp-legend">Verification code</legend>
+
+                        <div class="crm-otp-row" role="group" aria-label="Enter 6-digit code, one digit per field">
+                            <input class="crm-otp-input" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1"
+                                   id="otp-d0" name="otp-0" autocomplete="one-time-code" aria-label="Digit 1 of 6" placeholder="—" />
+                            <input class="crm-otp-input" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1"
+                                   id="otp-d1" name="otp-1" autocomplete="off" aria-label="Digit 2 of 6" placeholder="—" />
+                            <input class="crm-otp-input" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1"
+                                   id="otp-d2" name="otp-2" autocomplete="off" aria-label="Digit 3 of 6" placeholder="—" />
+                            <span class="crm-otp-sep" aria-hidden="true">–</span>
+                            <input class="crm-otp-input" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1"
+                                   id="otp-d3" name="otp-3" autocomplete="off" aria-label="Digit 4 of 6" placeholder="—" />
+                            <input class="crm-otp-input" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1"
+                                   id="otp-d4" name="otp-4" autocomplete="off" aria-label="Digit 5 of 6" placeholder="—" />
+                            <input class="crm-otp-input" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1"
+                                   id="otp-d5" name="otp-5" autocomplete="off" aria-label="Digit 6 of 6" placeholder="—" />
+                        </div>
+
+                        <div class="crm-otp-progress" aria-hidden="true">
+                            <div class="crm-progress-seg" id="otp-ps0"></div>
+                            <div class="crm-progress-seg" id="otp-ps1"></div>
+                            <div class="crm-progress-seg" id="otp-ps2"></div>
+                            <div class="crm-progress-seg" id="otp-ps3"></div>
+                            <div class="crm-progress-seg" id="otp-ps4"></div>
+                            <div class="crm-progress-seg" id="otp-ps5"></div>
+                        </div>
+                    </fieldset>
+
+                    <div id="otp-error" class="crm-otp-error" role="alert" aria-live="assertive">
+                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        <span id="otp-error-text">Please enter all 6 digits to continue.</span>
+                    </div>
+
+                    <div class="crm-expiry">
+                        Code expires in&nbsp;
+                        <span class="crm-expiry-time" id="otp-expiry-display" aria-live="off" aria-atomic="true">
+                            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                            <span id="otp-expiry-text">10:00</span>
+                        </span>
+
+                        <span id="otp-expiry-sr" class="crm-sr-live" aria-live="polite" aria-atomic="true"></span>
+                    </div>
+
+                    <button type="submit" class="crm-btn-primary" id="otp-verify-btn">
+                        <span class="crm-btn-inner">Verify & Continue</span>
+                        <span class="crm-btn-loader" aria-hidden="true"><div class="crm-ring"></div></span>
+                    </button>
+
+                </form>
+
+                <div class="crm-resend" role="complementary" aria-label="Resend options">
+                    Didn't receive the code?&nbsp;
+                    <button type="button" class="crm-link" id="otp-resend-btn" aria-label="Resend verification code">
+                        Resend code
+                    </button>
+                    <span id="otp-resend-timer" aria-live="polite" aria-atomic="true" style="display:none">
+                        Resend in <span id="otp-resend-countdown">30</span>s
+                    </span>
+                </div>
+
+            </div>
+
+            <div id="otp-success-panel"
+                 class="crm-success-panel"
+                 role="status"
+                 aria-live="polite"
+                 aria-atomic="true">
+                <div class="crm-success-icon" aria-hidden="true">
+                    <svg width="28" height="28" fill="none" stroke="#4ca87e" stroke-width="2.3" viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </div>
+                <h2>Identity verified</h2>
+                <p>Your identity has been confirmed. You may now set a new password for your account.</p>
+                <a href="login.html" class="crm-btn-outline mt-4" aria-label="Proceed to set a new password">
+                    Set new password
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/otp.js"></script>
+</body>
+</html>
