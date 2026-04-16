@@ -1,15 +1,18 @@
 # CRMPro — Authentication UI Module
-A modern CRM authentication UI module built with HTML5, CSS3, and Bootstrap.
-## Pages
 
+A modern CRM authentication UI module built with HTML5, CSS3, and Bootstrap.
+
+## Pages
 Login Page
 OTP Verification Screen
 Forgot Password / Password Reset Page
 
 ## Live Demo
-https://vsanthosh22.github.io/CRMPro/
-## Built With
+https://vsanthosh22.github.io/CRMPro/forgot-password.html
+https://vsanthosh22.github.io/CRMPro/login.html
+https://vsanthosh22.github.io/CRMPro/otp-verification.html
 
+## Built With
 HTML5
 CSS3
 Bootstrap
